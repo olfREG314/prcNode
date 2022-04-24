@@ -12,7 +12,7 @@ console.log(arr);
 for (let i = 2; i * i <= 50; ++i) {
   if (arr[i]) {
     for (let j = i * i; j <= 50; j += i) {
-      arr[j] = 0;
+      if (arr[j]) arr[j] = 0;
     }
   }
 }
