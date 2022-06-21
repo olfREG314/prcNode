@@ -2,14 +2,19 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>about</title>
-  </head>
+  <%- include("../partials/head.ejs")%>
+
   <body>
+    <%- include("../partials/nav.ejs")%>
     <h1>About</h1>
     <h4>its an about page</h4>
+    <div>
+      <% if(blogs.length>0){%> <% blogs.forEach(blog=>{%>
+      <h3><%= blog.title %></h3>
+      <p><%= blog.snippet %></p>
+      <%})}else {%>
+      <p>There is no blog ....</p>
+      <%}%>
+    </div>
   </body>
 </html>
