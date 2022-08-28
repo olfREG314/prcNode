@@ -1,0 +1,73 @@
+:root{
+    --dark:#545454;
+    --grey:#757575;
+    --lightgrey:#cfcfcf;
+}
+h1{
+    color: var(--grey);
+}
+h2{
+    text-align: center;
+}
+ul{
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+}
+ul li{
+    margin:10px 20px;
+}
+ul li a{
+    font-size: x-large ;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--dark);
+}
+ul li a:hover{
+    color: black;
+}
+body{
+    margin-left: 50px;
+}
+.blog-list .link{
+    padding-left: 10px;
+    border-left: 5px solid var(--lightgrey);
+}
+.blog-list a{
+    text-decoration: none;
+    /* margin: 10px; */
+}
+.blog-list a h3{
+    color: var(--dark);
+}
+ p{
+    color: var(--grey);
+    padding-left: 20px;
+}
+form{
+    border: 1px solid var(--lightgrey);
+    padding: 20px;
+    border-radius: 10px;
+    width: min-content;
+}
+label{
+    display: block;
+    font-size:x-large ;
+    font-weight: 400;
+    color: var(--dark);
+}
+.field{
+    border: 1px solid var(--lightgrey);
+    border-radius: 5px;
+    min-height: 30px;
+}
+button{
+    padding: 5px 10px;
+    color: var(--dark);
+    font-size: medium;
+    font-weight: 500;
+    margin: 30px 5px;
+    background-color: white;
+    border-radius: 5px;
+
+}

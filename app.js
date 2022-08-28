@@ -28,6 +28,7 @@ mongoose
   })
   .catch((err) => console.log(err));
 app.set("view engine", "ejs");
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 // const blogs = [
 //   { title: "ABC", snippet: "hey its the 1st blog titled abc... weired" },
