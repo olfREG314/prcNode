@@ -1,12 +1,12 @@
 /** @format */
+const credentials = require("./credentials.js");
 const express = require("express");
+const app = require("express")();
 const { rearg } = require("lodash");
 const mongoose = require("mongoose");
-const app = express();
-// ===mongoDB CLUSTER=========================
-// username=olfreg314
-// pswd=i6kKMDz5QPN7YDq
-// currentIP=49.37.48.163
+const { render } = require("ejs");
+const blogRoutes = require("./routes/blogRoutes.js");
+const PORT = 3000;
 // ============================================
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = "mongodb+srv://<username>:<password>@awesome.ufhkj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -18,37 +18,44 @@ const app = express();
 // });
 // =============================================
 // ===connect to mongoDB==========================
-const dbURL =
-  "mongodb+srv://forPrcNode:i6kKMDz5QPN7YDq_forPrcNode@awesome.ufhkj.mongodb.net/firstDB?retryWrites=true&w=majority";
+const dbURL = `mongodb+srv://forPrcNode:${credentials.PSSWD}_forPrcNode@awesome.ufhkj.mongodb.net/firstDB?retryWrites=true&w=majority`;
+
 mongoose
   .connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
     console.log("Conneted to mongoDB");
-    app.listen(3002);
+    app.listen(PORT);
   })
   .catch((err) => console.log(err));
 app.set("view engine", "ejs");
-const blogs = [
-  { title: "ABC", snippet: "hey its the 1st blog titled abc... weired" },
-  { title: "DEF", snippet: "so its the 2nd one... this one nrml" },
-  { title: "GHI", snippet: "3rd one is dangerous" },
-];
+app.use(express.urlencoded({ extended: true }));
+// const blogs = [
+//   { title: "ABC", snippet: "hey its the 1st blog titled abc... weired" },
+//   { title: "DEF", snippet: "so its the 2nd one... this one nrml" },
+//   { title: "GHI", snippet: "3rd one is dangerous" },
+// ];
+
 app.get("/", (req, res) => {
-  console.log("request made to index");
+  console.log("request made '/index'");
+  res.redirect("/blogs");
   //   res.send("<p>hey its response to your request");
   // res.sendFile("./views/index", { root: __dirname });
-  res.render("index", { title: "Home" }); //passed the title to index.ejs
+  // res.render("index", { title: "Home" }); //passed the title to index.ejs
 });
 app.get("/about", (req, res) => {
   // res.sendFile("./views/about.html", { root: __dirname });
-  console.log("request made to about");
-  res.render("about", { blogs, title: "about" }); // =blogs:blogs
+  console.log("request made '/about'");
+  res.render("about", { title: "about" }); // =blogs:blogs
 });
 //redirect
 app.get("/about_", (req, res) => {
-  console.log("request made to about_");
+  console.log("request made '/about_'");
   res.redirect("/about");
 });
+
+app.use(blogRoutes);
+// app.use("/blogs",blogRoutes)//makes much more reusable
+
 //use this if any link didn't matched up there
 app.use((req, res) =>
   // res.status(404).sendFile("./views/page404.html", { root: __dirname })

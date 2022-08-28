@@ -7,14 +7,7 @@
   <body>
     <%- include("../partials/nav.ejs")%>
     <h1>About</h1>
-    <h4>its an about page</h4>
-    <div>
-      <% if(blogs.length>0){%> <% blogs.forEach(blog=>{%>
-      <h3><%= blog.title %></h3>
-      <p><%= blog.snippet %></p>
-      <%})}else {%>
-      <p>There is no blog ....</p>
-      <%}%>
+    <p>its a blog page made using <strong>node,express,mongodb,ejs</strong></p>
     </div>
   </body>
 </html>
